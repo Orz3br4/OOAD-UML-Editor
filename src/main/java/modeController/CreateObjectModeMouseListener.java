@@ -1,16 +1,17 @@
 package modeController;
 
 import layout.Canvas;
+import shape.ShapeFactory;
 import shape.UMLClass;
+import shape.UMLShape;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class CreateObjectModeMouseListener implements ModeMouseListener {
-    public static final String CLASS = "class";
-    public static final String USE_CASE = "useCase";
     private final String objType;
-    private Canvas canvas;
+    private final ShapeFactory factory = new ShapeFactory();
+    private final Canvas canvas;
     public CreateObjectModeMouseListener(String objType, Canvas canvas) {
         this.objType = objType;
         this.canvas = canvas;
@@ -19,18 +20,6 @@ public class CreateObjectModeMouseListener implements ModeMouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (objType.equals(CLASS)) {
-            Point currentPosition = MouseInfo.getPointerInfo().getLocation();
-            UMLClass umlClass = new UMLClass(currentPosition.x, currentPosition.y, 50, 100);
-            canvas.addShape(umlClass);
-            canvas.repaint();
-            System.out.println(canvas.getCurrentModeMouseListener().getClass() + ": Mouse CLicked");
-
-        } else if (objType.equals(USE_CASE)) {
-
-        } else {
-            System.out.println("No such object type.");
-        }
     }
 
     @Override
@@ -45,7 +34,10 @@ public class CreateObjectModeMouseListener implements ModeMouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        UMLShape shape = factory.createUMLShape(objType, e.getPoint());
+        System.out.println("shape info: " + shape.getX() + ", " + shape.getY());
+        canvas.addShape(shape);
+        canvas.repaint();
     }
 
     @Override

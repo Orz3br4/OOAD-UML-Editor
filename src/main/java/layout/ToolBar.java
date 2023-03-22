@@ -4,6 +4,7 @@ import modeController.CreateLineModeMouseListener;
 import modeController.CreateObjectModeMouseListener;
 import modeController.ModeMouseListener;
 import modeController.SelectModeMouseListener;
+import shape.UMLShape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,11 +45,11 @@ public class ToolBar extends JToolBar {
         add(compositionModeButton);
 
         ImageIcon classIcon = new ImageIcon("src/main/resources/icons/class.png");
-        createClassButton           = new ToolButton("Class", classIcon, new CreateObjectModeMouseListener(CreateObjectModeMouseListener.CLASS, canvas));
+        createClassButton           = new ToolButton("Class", classIcon, new CreateObjectModeMouseListener(UMLShape.CLASS, canvas));
         add(createClassButton);
 
         ImageIcon useCaseIcon = new ImageIcon("src/main/resources/icons/use_case.png");
-        createUseCaseButton         = new ToolButton("Use Case", useCaseIcon, new CreateObjectModeMouseListener(CreateObjectModeMouseListener.USE_CASE, canvas));
+        createUseCaseButton         = new ToolButton("Use Case", useCaseIcon, new CreateObjectModeMouseListener(UMLShape.USE_CASE, canvas));
         add(createUseCaseButton);
     }
 
@@ -71,7 +72,7 @@ public class ToolBar extends JToolBar {
                 }
                 selectedButton = (ToolButton) e.getSource();
                 selectedButton.setBackground(Color.BLUE);
-                currentModeMouseListener = modeMouseListener;
+                currentModeMouseListener = selectedButton.modeMouseListener;
                 canvas.setCurrentModeController(currentModeMouseListener);
                 System.out.println("currentModeController: " + currentModeMouseListener.getClass());
             }

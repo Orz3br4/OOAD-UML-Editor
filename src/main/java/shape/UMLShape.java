@@ -4,19 +4,35 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class UMLShape extends JComponent {
-    private int x, y;
-    private int width, height;
-    private boolean isSelected = false;
+    public static final String CLASS = "class";
+    public static final String USE_CASE = "useCase";
+    protected String objName = "Object Name";
+    protected int x;
+    protected int y;
+    protected int width, height;
+    protected boolean isSelected = false;
 
-    public UMLShape(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    @Override
+    public int getX() {
+        return x;
     }
 
     @Override
-    public abstract void paint(Graphics g);
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    public abstract void draw(Graphics g);
 
     public boolean contains(Point p) {
         return getBounds().contains(p);

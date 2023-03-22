@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
-    private ArrayList<UMLShape> Shapes = new ArrayList<>();
+    private ArrayList<UMLShape> shapes = new ArrayList<>();
     private UMLShape selectedShape = null;
     public Canvas() {
         setBackground(Color.WHITE);
@@ -23,23 +23,19 @@ public class Canvas extends JPanel {
         addMouseListener(this.currentModeMouseListener);
     }
 
-    public ModeMouseListener getCurrentModeMouseListener() {
-        return currentModeMouseListener;
-    }
-
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
-        for (UMLShape shape: Shapes) {
-            shape.paint(g);
+        for (UMLShape shape: shapes) {
+            shape.draw(g);
         }
 
     }
 
     public void addShape(UMLShape umlShape) {
-        Shapes.add(umlShape);
+        shapes.add(umlShape);
         repaint();
-        System.out.println("Shapes: " + Shapes.toString());
+        System.out.println("Shapes: " + shapes.toString());
     }
 }

@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29f3999d-7477-4117-a0b1-c204f2fbbf42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/layout/ToolBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modeController/CreateLineModeMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modeController/CreateObjectModeMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modeController/ModeMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modeController/SelectModeMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shape/UMLClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/shape/UMLShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/shape/ShapeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/layout/CanvasPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/layout/Canvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/layout/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/layout/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/layout/ToolkitPane.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/UMLEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/UMLEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/layout/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/layout/Canvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/layout/ToolBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/layout/ToolBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modeController/CreateObjectModeMouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modeController/CreateObjectModeMouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shape/UMLClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shape/UMLClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shape/UMLShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shape/UMLShape.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +67,9 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="shape.UMLShape" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="layout" />
