@@ -1,4 +1,4 @@
-package shape;
+package component;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +10,7 @@ public abstract class UMLShape extends JComponent {
     protected int x;
     protected int y;
     protected int width, height;
+    protected int depth;
     protected boolean isSelected = false;
 
     @Override

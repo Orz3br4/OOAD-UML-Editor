@@ -4,7 +4,7 @@ import modeController.CreateLineModeMouseListener;
 import modeController.CreateObjectModeMouseListener;
 import modeController.ModeMouseListener;
 import modeController.SelectModeMouseListener;
-import shape.UMLShape;
+import component.UMLShape;
 
 import javax.swing.*;
 import java.awt.*;

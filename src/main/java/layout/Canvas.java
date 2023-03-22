@@ -1,7 +1,7 @@
 package layout;
 
 import modeController.ModeMouseListener;
-import shape.UMLShape;
+import component.UMLShape;
 
 import javax.swing.*;
 import java.awt.*;

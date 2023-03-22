@@ -1,11 +1,9 @@
 package modeController;
 
 import layout.Canvas;
-import shape.ShapeFactory;
-import shape.UMLClass;
-import shape.UMLShape;
+import component.ShapeFactory;
+import component.UMLShape;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class CreateObjectModeMouseListener implements ModeMouseListener {
