@@ -16,5 +16,11 @@ public class UMLUseCase extends UMLBasicObject {
         int stringWidth = g.getFontMetrics().stringWidth(objName);
         int padding = (width-stringWidth) / 2;
         g.drawString(objName, x + padding, y + height / 2);
+
+        if (isSelected) {
+            for (UMLPort port: ports) {
+                port.draw(g);
+            }
+        }
     }
 }
