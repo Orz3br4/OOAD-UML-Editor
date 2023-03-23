@@ -34,6 +34,9 @@ public class Canvas extends JPanel {
     }
 
     public void addShape(UMLBasicObject umlBasicObject) {
+        for (UMLBasicObject obj: shapes) {
+            obj.setDepth(obj.getDepth() + 1);
+        }
         shapes.add(umlBasicObject);
         repaint();
     }

@@ -4,11 +4,8 @@ import java.awt.*;
 
 public class UMLUseCase extends UMLBasicObject {
     public UMLUseCase(int x, int y, int width, int height) {
-        super();
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
+        this.objName = "Use Case";
     }
 
     @Override

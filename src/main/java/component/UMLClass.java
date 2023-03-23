@@ -1,5 +1,6 @@
 package component;
 
+import javax.sound.sampled.Port;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -8,10 +9,8 @@ public class UMLClass extends UMLBasicObject {
     private ArrayList<String> methods = new ArrayList<>();
 
     public UMLClass(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
+        this.objName = "Class";
     }
 
     @Override
@@ -26,5 +25,11 @@ public class UMLClass extends UMLBasicObject {
         int stringWidth = g.getFontMetrics().stringWidth(objName);
         int padding = (width-stringWidth) / 2;
         g.drawString(objName, x + padding, y + portion / 2);
+
+        if (isSelected) {
+            for (UMLPort port: ports) {
+                port.draw(g);
+            }
+        }
     }
 }
