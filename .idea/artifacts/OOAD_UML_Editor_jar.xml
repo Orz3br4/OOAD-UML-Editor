@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OOAD-UML-Editor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OOAD_UML_Editor_jar</output-path>
+    <root id="archive" name="OOAD-UML-Editor.jar">
+      <element id="module-output" name="OOAD-UML-Editor" />
+    </root>
+  </artifact>
+</component>

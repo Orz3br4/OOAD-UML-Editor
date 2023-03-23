@@ -1,5 +1,6 @@
 package layout;
 
+import component.UMLBasicLine;
 import modeController.CreateLineModeMouseListener;
 import modeController.CreateObjectModeMouseListener;
 import modeController.ModeMouseListener;
@@ -33,15 +34,15 @@ public class ToolBar extends JToolBar {
         add(selectModeButton);
 
         ImageIcon associationIcon = new ImageIcon("src/main/resources/icons/association_line.png");
-        associationModeButton       = new ToolButton("Association", associationIcon, new CreateLineModeMouseListener(CreateLineModeMouseListener.ASSOCIATION, canvas));
+        associationModeButton       = new ToolButton("Association", associationIcon, new CreateLineModeMouseListener(UMLBasicLine.ASSOCIATION, canvas));
         add(associationModeButton);
 
         ImageIcon generalizationIcon = new ImageIcon("src/main/resources/icons/generalization_line.png");
-        generalizationModeButton    = new ToolButton("Generalization", generalizationIcon, new CreateLineModeMouseListener(CreateLineModeMouseListener.GENERALIZATION, canvas));
+        generalizationModeButton    = new ToolButton("Generalization", generalizationIcon, new CreateLineModeMouseListener(UMLBasicLine.GENERALIZATION, canvas));
         add(generalizationModeButton);
 
         ImageIcon compositionIcon = new ImageIcon("src/main/resources/icons/composition_line.png");
-        compositionModeButton       = new ToolButton("Composition", compositionIcon, new CreateLineModeMouseListener(CreateLineModeMouseListener.COMPOSITION, canvas));
+        compositionModeButton       = new ToolButton("Composition", compositionIcon, new CreateLineModeMouseListener(UMLBasicLine.COMPOSITION, canvas));
         add(compositionModeButton);
 
         ImageIcon classIcon = new ImageIcon("src/main/resources/icons/class.png");

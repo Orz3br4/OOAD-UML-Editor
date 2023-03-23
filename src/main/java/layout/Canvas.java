@@ -1,5 +1,7 @@
 package layout;
 
+import component.UMLBasicLine;
+import component.UMLPort;
 import modeController.ModeMouseListener;
 import component.UMLBasicObject;
 
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
     private ArrayList<UMLBasicObject> shapes = new ArrayList<>();
+    private ArrayList<UMLBasicLine> lines = new ArrayList<>();
     private UMLBasicObject selectedShape = null;
     public Canvas() {
         setBackground(Color.WHITE);
@@ -18,9 +21,11 @@ public class Canvas extends JPanel {
     public void setCurrentModeController(ModeMouseListener currentModeMouseListener) {
         if (this.currentModeMouseListener != null) {
             removeMouseListener(this.currentModeMouseListener);
+            removeMouseMotionListener(this.currentModeMouseListener);
         }
         this.currentModeMouseListener = currentModeMouseListener;
         addMouseListener(this.currentModeMouseListener);
+        addMouseMotionListener(this.currentModeMouseListener);
     }
 
     @Override
@@ -31,6 +36,10 @@ public class Canvas extends JPanel {
             shape.draw(g);
         }
 
+        for (UMLBasicLine line: lines) {
+            line.draw(g);
+        }
+
     }
 
     public void addShape(UMLBasicObject umlBasicObject) {
@@ -38,6 +47,27 @@ public class Canvas extends JPanel {
             obj.setDepth(obj.getDepth() + 1);
         }
         shapes.add(umlBasicObject);
-        repaint();
+    }
+
+    public ArrayList<UMLBasicObject> getShapes() {
+        return shapes;
+    }
+
+    public void addLine(UMLBasicLine line) {
+        lines.add(line);
+    }
+
+    public UMLPort getUmlObjectPort(Point point) {
+        UMLPort closestPort = null;
+        for (UMLBasicObject object: shapes) {
+            if (object.contains(point)) {
+                closestPort = object.getClosestPort(point);
+            }
+        }
+        return closestPort;
+    }
+
+    public void removeLine(UMLBasicLine currentLine) {
+        lines.remove(currentLine);
     }
 }

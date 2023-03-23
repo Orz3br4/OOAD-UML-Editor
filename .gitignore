@@ -11,6 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
+out/*
+.idea/artifacts/
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
@@ -36,4 +39,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-.idea/workspace.xml
+
+src/main/resources/META-INF/

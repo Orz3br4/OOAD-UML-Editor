@@ -15,4 +15,18 @@ public class UMLPort extends UMLShape {
         g.setColor(Color.BLACK);
         g.fillRect(x - width / 2, y - height / 2, width, height);
     }
+
+    public boolean contains(Point p) {
+        return getBounds().contains(p);
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
+
+    @Override
+    public Point getLocation() {
+        return new Point(getX(), getY());
+    }
 }

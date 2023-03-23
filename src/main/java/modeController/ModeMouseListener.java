@@ -1,21 +1,25 @@
 package modeController;
 
+import layout.Canvas;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public interface ModeMouseListener extends MouseListener {
+public abstract class ModeMouseListener implements MouseListener, MouseMotionListener {
+    protected Canvas canvas;
     @Override
-    void mouseClicked(MouseEvent e);
-
-    @Override
-    void mouseEntered(MouseEvent e);
-
-    @Override
-    void mouseExited(MouseEvent e);
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
-    void mousePressed(MouseEvent e);
+    public void mouseEntered(MouseEvent e) {};
 
     @Override
-    void mouseReleased(MouseEvent e);
+    public void mouseExited(MouseEvent e) {};
+
+    @Override
+    public void mousePressed(MouseEvent e) {};
+
+    @Override
+    public void mouseReleased(MouseEvent e) {};
 }

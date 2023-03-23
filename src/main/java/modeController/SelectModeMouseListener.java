@@ -4,8 +4,7 @@ import layout.Canvas;
 
 import java.awt.event.MouseEvent;
 
-public class SelectModeMouseListener implements ModeMouseListener {
-    private final Canvas canvas;
+public class SelectModeMouseListener extends ModeMouseListener {
 
     public SelectModeMouseListener(Canvas canvas) {
         this.canvas = canvas;
@@ -33,6 +32,16 @@ public class SelectModeMouseListener implements ModeMouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
 
     }
 }

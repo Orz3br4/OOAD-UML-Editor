@@ -9,6 +9,7 @@ public abstract class UMLBasicObject extends UMLShape {
     protected String objName = "Object Name";
     protected int depth = 0;
     protected boolean isSelected = false;
+
     protected  UMLPort[] ports = new UMLPort[4];
 
     public UMLBasicObject(int x, int y, int width, int height) {
@@ -60,4 +61,23 @@ public abstract class UMLBasicObject extends UMLShape {
         isSelected = selected;
     }
 
+    public UMLPort[] getPorts() {
+        return ports;
+    }
+
+    public UMLPort getClosestPort(Point point) {
+        UMLPort closestPort = null;
+        for (UMLPort port: ports) {
+            if (closestPort == null) {
+                closestPort = port;
+            } else {
+                closestPort = (Math.hypot(closestPort.x - point.x,
+                                          closestPort.y - point.y)) <
+                               Math.hypot(port.x - point.x,
+                                          port.y - point.y)
+                               ? closestPort: port;
+            }
+        }
+        return closestPort;
+    }
 }
