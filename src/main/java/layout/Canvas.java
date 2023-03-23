@@ -1,7 +1,7 @@
 package layout;
 
 import modeController.ModeMouseListener;
-import component.UMLShape;
+import component.UMLBasicObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
-    private ArrayList<UMLShape> shapes = new ArrayList<>();
-    private UMLShape selectedShape = null;
+    private ArrayList<UMLBasicObject> shapes = new ArrayList<>();
+    private UMLBasicObject selectedShape = null;
     public Canvas() {
         setBackground(Color.WHITE);
     }
@@ -27,15 +27,14 @@ public class Canvas extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        for (UMLShape shape: shapes) {
+        for (UMLBasicObject shape: shapes) {
             shape.draw(g);
         }
 
     }
 
-    public void addShape(UMLShape umlShape) {
-        shapes.add(umlShape);
+    public void addShape(UMLBasicObject umlBasicObject) {
+        shapes.add(umlBasicObject);
         repaint();
-        System.out.println("Shapes: " + shapes.toString());
     }
 }

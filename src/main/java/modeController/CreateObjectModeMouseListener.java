@@ -2,7 +2,7 @@ package modeController;
 
 import layout.Canvas;
 import component.ShapeFactory;
-import component.UMLShape;
+import component.UMLBasicObject;
 
 import java.awt.event.MouseEvent;
 
@@ -32,8 +32,7 @@ public class CreateObjectModeMouseListener implements ModeMouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        UMLShape shape = factory.createUMLShape(objType, e.getPoint());
-        System.out.println("shape info: " + shape.getX() + ", " + shape.getY());
+        UMLBasicObject shape = factory.createUMLShape(objType, e.getPoint());
         canvas.addShape(shape);
         canvas.repaint();
     }

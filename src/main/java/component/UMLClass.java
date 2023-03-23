@@ -3,7 +3,7 @@ package component;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class UMLClass extends UMLShape{
+public class UMLClass extends UMLBasicObject {
     private ArrayList<String> attributes = new ArrayList<>();
     private ArrayList<String> methods = new ArrayList<>();
 
@@ -25,6 +25,6 @@ public class UMLClass extends UMLShape{
 
         int stringWidth = g.getFontMetrics().stringWidth(objName);
         int padding = (width-stringWidth) / 2;
-        g.drawString(objName, x + padding, y + 15);
+        g.drawString(objName, x + padding, y + portion / 2);
     }
 }

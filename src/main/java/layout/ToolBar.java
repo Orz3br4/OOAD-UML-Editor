@@ -4,7 +4,7 @@ import modeController.CreateLineModeMouseListener;
 import modeController.CreateObjectModeMouseListener;
 import modeController.ModeMouseListener;
 import modeController.SelectModeMouseListener;
-import component.UMLShape;
+import component.UMLBasicObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,11 +45,11 @@ public class ToolBar extends JToolBar {
         add(compositionModeButton);
 
         ImageIcon classIcon = new ImageIcon("src/main/resources/icons/class.png");
-        createClassButton           = new ToolButton("Class", classIcon, new CreateObjectModeMouseListener(UMLShape.CLASS, canvas));
+        createClassButton           = new ToolButton("Class", classIcon, new CreateObjectModeMouseListener(UMLBasicObject.CLASS, canvas));
         add(createClassButton);
 
         ImageIcon useCaseIcon = new ImageIcon("src/main/resources/icons/use_case.png");
-        createUseCaseButton         = new ToolButton("Use Case", useCaseIcon, new CreateObjectModeMouseListener(UMLShape.USE_CASE, canvas));
+        createUseCaseButton         = new ToolButton("Use Case", useCaseIcon, new CreateObjectModeMouseListener(UMLBasicObject.USE_CASE, canvas));
         add(createUseCaseButton);
     }
 
@@ -60,6 +60,8 @@ public class ToolBar extends JToolBar {
             setToolTipText(toolName);
             setIcon(icon);
             setBackground(Color.WHITE);
+            setOpaque(true);
+            setBorderPainted(false);
             this.modeMouseListener = modeMouseListener;
             addActionListener(new ToolListener());
         }
@@ -71,10 +73,9 @@ public class ToolBar extends JToolBar {
                     selectedButton.setBackground(Color.WHITE);
                 }
                 selectedButton = (ToolButton) e.getSource();
-                selectedButton.setBackground(Color.BLUE);
+                selectedButton.setBackground(Color.GRAY);
                 currentModeMouseListener = selectedButton.modeMouseListener;
                 canvas.setCurrentModeController(currentModeMouseListener);
-                System.out.println("currentModeController: " + currentModeMouseListener.getClass());
             }
         }
     }
