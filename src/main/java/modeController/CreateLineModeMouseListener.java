@@ -41,6 +41,8 @@ public class CreateLineModeMouseListener extends ModeMouseListener {
         if (closestPort != null) {
             UMLBasicLine line = factory.createUMLLine(lineType, closestPort.getLocation(), e.getPoint());
             currentLine = line;
+            currentLine.setStartPort(closestPort);
+            closestPort.addLine(currentLine);
             canvas.addLine(currentLine);
             canvas.repaint();
         }
@@ -51,8 +53,11 @@ public class CreateLineModeMouseListener extends ModeMouseListener {
         UMLPort closestPort = canvas.getUmlObjectPort(e.getPoint());
         if (currentLine != null && closestPort != null) {
             currentLine.setEndPoint(closestPort.getLocation());
+            currentLine.setEndPort(closestPort);
+            closestPort.addLine(currentLine);
             canvas.repaint();
         } else if (currentLine != null && closestPort == null){
+            currentLine.getStartPort().removeLine(currentLine);
             canvas.removeLine(currentLine);
             canvas.repaint();
         }
@@ -61,7 +66,6 @@ public class CreateLineModeMouseListener extends ModeMouseListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         if (currentLine != null) {
-            System.out.println(e.getPoint());
             currentLine.setEndPoint(e.getPoint());
             canvas.repaint();
         }

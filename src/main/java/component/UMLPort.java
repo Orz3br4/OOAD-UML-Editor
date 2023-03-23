@@ -1,8 +1,11 @@
 package component;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UMLPort extends UMLShape {
+    private ArrayList<UMLBasicLine> lines = new ArrayList<>();
+
     public UMLPort(Point location) {
         x = location.x;
         y = location.y;
@@ -28,5 +31,25 @@ public class UMLPort extends UMLShape {
     @Override
     public Point getLocation() {
         return new Point(getX(), getY());
+    }
+
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+        for (UMLBasicLine line: lines) {
+            if (line.getStartPort() == this) {
+                line.setStartPoint(new Point(x, y));
+            } else if (line.getEndPort() == this) {
+                line.setEndPoint(new Point(x, y));
+            }
+        }
+    }
+
+    public void addLine(UMLBasicLine line) {
+        lines.add(line);
+    }
+
+    public void removeLine(UMLBasicLine currentLine) {
+        lines.remove(currentLine);
     }
 }

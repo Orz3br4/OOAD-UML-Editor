@@ -13,6 +13,7 @@ public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
     private ArrayList<UMLBasicObject> shapes = new ArrayList<>();
     private ArrayList<UMLBasicLine> lines = new ArrayList<>();
+
     private UMLBasicObject selectedShape = null;
     public Canvas() {
         setBackground(Color.WHITE);
@@ -23,9 +24,14 @@ public class Canvas extends JPanel {
             removeMouseListener(this.currentModeMouseListener);
             removeMouseMotionListener(this.currentModeMouseListener);
         }
+        if (selectedShape != null) {
+            selectedShape.setSelected(false);
+            selectedShape = null;
+        }
         this.currentModeMouseListener = currentModeMouseListener;
         addMouseListener(this.currentModeMouseListener);
         addMouseMotionListener(this.currentModeMouseListener);
+        repaint();
     }
 
     @Override
@@ -49,8 +55,8 @@ public class Canvas extends JPanel {
         shapes.add(umlBasicObject);
     }
 
-    public ArrayList<UMLBasicObject> getShapes() {
-        return shapes;
+    public void removeShape(UMLBasicObject umlBasicObject) {
+        shapes.remove(umlBasicObject);
     }
 
     public void addLine(UMLBasicLine line) {
@@ -69,5 +75,28 @@ public class Canvas extends JPanel {
 
     public void removeLine(UMLBasicLine currentLine) {
         lines.remove(currentLine);
+    }
+
+    public UMLBasicObject getSelectedShape() {
+        return selectedShape;
+    }
+
+    public void setSelectedShape(UMLBasicObject selectedShape) {
+        this.selectedShape = selectedShape;
+    }
+
+    public UMLBasicObject getUmlObject(Point point) {
+        UMLBasicObject topMostObject = null;
+        for (UMLBasicObject object: shapes) {
+            if (object.contains(point)) {
+                if (topMostObject == null) {
+                    topMostObject = object;
+                } else {
+                    topMostObject = (topMostObject.getDepth() < object.getDepth())
+                            ? topMostObject: object;
+                }
+            }
+        }
+        return topMostObject;
     }
 }

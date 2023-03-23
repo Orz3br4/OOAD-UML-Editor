@@ -27,15 +27,9 @@ public abstract class UMLBasicObject extends UMLShape {
         return getBounds().contains(p);
     }
 
-    public void move(int dx, int dy) {
-        x += dx;
-        y += dy;
-    }
-
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
-
 
     public String getObjName() {
         return objName;
@@ -43,6 +37,19 @@ public abstract class UMLBasicObject extends UMLShape {
 
     public void setObjName(String objName) {
         this.objName = objName;
+    }
+
+    public void setLocation(Point p) {
+        x = p.x;
+        y = p.y;
+    }
+
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+        for (UMLPort port: ports) {
+            port.move(dx, dy);
+        }
     }
 
     public int getDepth() {

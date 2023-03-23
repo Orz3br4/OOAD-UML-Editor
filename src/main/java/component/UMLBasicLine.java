@@ -8,6 +8,8 @@ public abstract class UMLBasicLine extends UMLShape {
     public static final String COMPOSITION = "Composition";
     protected Point startPoint;
     protected Point endPoint;
+    protected UMLPort startPort = null;
+    protected UMLPort endPort = null;
 
     public UMLBasicLine(Point startPoint, Point endPoint) {
         this.startPoint = startPoint;
@@ -29,4 +31,22 @@ public abstract class UMLBasicLine extends UMLShape {
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
     }
+
+
+    public UMLPort getStartPort() {
+        return startPort;
+    }
+
+    public void setStartPort(UMLPort startPort) {
+        this.startPort = startPort;
+    }
+
+    public UMLPort getEndPort() {
+        return endPort;
+    }
+
+    public void setEndPort(UMLPort endPort) {
+        this.endPort = endPort;
+    }
+
 }
