@@ -54,13 +54,18 @@ public class CreateLineModeMouseListener extends ModeMouseListener {
         if (currentLine != null && closestPort != null) {
             currentLine.setEndPoint(closestPort.getLocation());
             currentLine.setEndPort(closestPort);
-            closestPort.addLine(currentLine);
-            canvas.repaint();
+            if (currentLine.getStartPort() != currentLine.getEndPort()){
+                closestPort.addLine(currentLine);
+            } else {
+                canvas.removeLine(currentLine);
+                currentLine = null;
+            }
         } else if (currentLine != null && closestPort == null){
             currentLine.getStartPort().removeLine(currentLine);
             canvas.removeLine(currentLine);
-            canvas.repaint();
+            currentLine = null;
         }
+        canvas.repaint();
     }
 
     @Override

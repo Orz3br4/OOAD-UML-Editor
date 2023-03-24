@@ -13,8 +13,10 @@ public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
     private ArrayList<UMLBasicObject> shapes = new ArrayList<>();
     private ArrayList<UMLBasicLine> lines = new ArrayList<>();
+    private ArrayList<UMLBasicObject> selectedShapes = new ArrayList<>();
+    private Rectangle selectedArea = null;
+    protected int startX, startY;
 
-    private UMLBasicObject selectedShape = null;
     public Canvas() {
         setBackground(Color.WHITE);
     }
@@ -24,10 +26,12 @@ public class Canvas extends JPanel {
             removeMouseListener(this.currentModeMouseListener);
             removeMouseMotionListener(this.currentModeMouseListener);
         }
-        if (selectedShape != null) {
-            selectedShape.setSelected(false);
-            selectedShape = null;
+
+        for (UMLBasicObject selectedShape: selectedShapes){
+                selectedShape.setSelected(false);
         }
+        selectedShapes.clear();
+
         this.currentModeMouseListener = currentModeMouseListener;
         addMouseListener(this.currentModeMouseListener);
         addMouseMotionListener(this.currentModeMouseListener);
@@ -46,6 +50,19 @@ public class Canvas extends JPanel {
             line.draw(g);
         }
 
+        if (selectedArea != null) {
+            drawSelectedArea(g);
+        }
+
+
+    }
+
+    public void drawSelectedArea(Graphics g) {
+        g.setColor(new Color(51, 153, 255));
+        g.drawRect(selectedArea.x, selectedArea.y, selectedArea.width, selectedArea.height);
+        int alpha = 127; // 50% transparency
+        g.setColor(new Color(51, 153, 255, alpha));
+        g.fillRect(selectedArea.x, selectedArea.y, selectedArea.width, selectedArea.height);
     }
 
     public void addShape(UMLBasicObject umlBasicObject) {
@@ -77,12 +94,12 @@ public class Canvas extends JPanel {
         lines.remove(currentLine);
     }
 
-    public UMLBasicObject getSelectedShape() {
-        return selectedShape;
+    public ArrayList<UMLBasicObject> getSelectedShapes() {
+        return selectedShapes;
     }
 
-    public void setSelectedShape(UMLBasicObject selectedShape) {
-        this.selectedShape = selectedShape;
+    public void addSelectedShape(UMLBasicObject selectedShape) {
+        this.selectedShapes.add(selectedShape);
     }
 
     public UMLBasicObject getUmlObject(Point point) {
@@ -99,4 +116,33 @@ public class Canvas extends JPanel {
         }
         return topMostObject;
     }
+
+    public ArrayList<UMLBasicObject> getShapes() {
+        return shapes;
+    }
+
+    public Rectangle getSelectedArea() {
+        return selectedArea;
+    }
+
+    public void setSelectedArea(Rectangle selectedArea) {
+        this.selectedArea = selectedArea;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public void setStartX(int startX) {
+        this.startX = startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public void setStartY(int startY) {
+        this.startY = startY;
+    }
+
 }

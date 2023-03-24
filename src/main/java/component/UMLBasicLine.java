@@ -32,7 +32,6 @@ public abstract class UMLBasicLine extends UMLShape {
         this.endPoint = endPoint;
     }
 
-
     public UMLPort getStartPort() {
         return startPort;
     }
