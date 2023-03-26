@@ -9,7 +9,7 @@ public abstract class UMLBasicObject extends UMLShape {
     protected String objName = "Object Name";
     protected int depth = 0;
     protected boolean isSelected = false;
-
+    protected UMLGroupObject group = null;
     protected  UMLPort[] ports = new UMLPort[4];
 
     public UMLBasicObject(int x, int y, int width, int height) {
@@ -86,5 +86,13 @@ public abstract class UMLBasicObject extends UMLShape {
             }
         }
         return closestPort;
+    }
+
+    public UMLGroupObject getGroup() {
+        return group;
+    }
+
+    public void setGroup(UMLGroupObject group) {
+        this.group = group;
     }
 }

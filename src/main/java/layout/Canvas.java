@@ -1,19 +1,21 @@
 package layout;
 
 import component.UMLBasicLine;
+import component.UMLGroupObject;
 import component.UMLPort;
 import modeController.ModeMouseListener;
 import component.UMLBasicObject;
 
 import javax.swing.*;
+import javax.xml.crypto.dsig.XMLSignature;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
-    private ArrayList<UMLBasicObject> shapes = new ArrayList<>();
-    private ArrayList<UMLBasicLine> lines = new ArrayList<>();
-    private ArrayList<UMLBasicObject> selectedShapes = new ArrayList<>();
+    private final ArrayList<UMLBasicObject> shapes = new ArrayList<>();
+    private final ArrayList<UMLBasicLine> lines = new ArrayList<>();
+    private final ArrayList<UMLBasicObject> selectedShapes = new ArrayList<>();
     private Rectangle selectedArea = null;
     protected int startX, startY;
 
@@ -53,8 +55,6 @@ public class Canvas extends JPanel {
         if (selectedArea != null) {
             drawSelectedArea(g);
         }
-
-
     }
 
     public void drawSelectedArea(Graphics g) {
@@ -145,4 +145,18 @@ public class Canvas extends JPanel {
         this.startY = startY;
     }
 
+    public ModeMouseListener getCurrentModeMouseListener() {
+        return currentModeMouseListener;
+    }
+
+    public boolean isOnlyOneGroupSelected() {
+        return (selectedShapes.size() == 1 &&
+            selectedShapes.get(0).getClass().getName().equals("component.UMLGroupObject"));
+    }
+
+    public UMLGroupObject getSelectedGroup() {
+        if (isOnlyOneGroupSelected()) {
+            return (UMLGroupObject) selectedShapes.get(0);
+        } else return null;
+    }
 }

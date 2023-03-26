@@ -33,6 +33,11 @@ public class UMLPort extends UMLShape {
         return new Point(getX(), getY());
     }
 
+    public void setLocation(Point point) {
+        x = point.x;
+        y = point.y;
+    }
+
     public void move(int dx, int dy) {
         x += dx;
         y += dy;

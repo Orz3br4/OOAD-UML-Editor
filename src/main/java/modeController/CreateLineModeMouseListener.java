@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 public class CreateLineModeMouseListener extends ModeMouseListener {
     private final ShapeFactory factory = new ShapeFactory();
     private final String lineType;
-    private Point startPoint;
-    private Point endPoint;
     private UMLBasicLine currentLine = null;
 
     public CreateLineModeMouseListener(String lineType, Canvas canvas) {
