@@ -38,8 +38,5 @@ public class UMLGeneralization extends UMLBasicLine {
                 new int[] {arrowStartPoint1.x, arrowStartPoint2.x, endPoint.x},
                 new int[] {arrowStartPoint1.y, arrowStartPoint2.y, endPoint.y},
                 3);
-
-        System.out.println("Triangle is drawn");
-
     }
 }
