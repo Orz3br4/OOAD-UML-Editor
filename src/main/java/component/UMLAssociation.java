@@ -17,14 +17,14 @@ public class UMLAssociation extends UMLBasicLine {
 
         Point arrowEndPoint1 = endPoint;
         Point arrowStartPoint1 = new Point(
-                (int) ((v.x * Math.cos(Math.PI / 6) - v.y * Math.sin(Math.PI / 6)) / vLength * 10 + endPoint.x),
-                (int) ((v.x * Math.sin(Math.PI / 6) + v.y * Math.cos(Math.PI / 6)) / vLength * 10 + endPoint.y)
+                (int) ((v.x * Math.cos(Math.PI / 6) - v.y * Math.sin(Math.PI / 6)) / vLength * 12 + endPoint.x),
+                (int) ((v.x * Math.sin(Math.PI / 6) + v.y * Math.cos(Math.PI / 6)) / vLength * 12 + endPoint.y)
         );
 
         Point arrowEndPoint2 = endPoint;
         Point arrowStartPoint2 = new Point(
-                (int) ((v.x * Math.cos(-Math.PI / 6) - v.y * Math.sin(-Math.PI / 6)) / vLength * 10 + endPoint.x),
-                (int) ((v.x * Math.sin(-Math.PI / 6) + v.y * Math.cos(-Math.PI / 6)) / vLength * 10 + endPoint.y)
+                (int) ((v.x * Math.cos(-Math.PI / 6) - v.y * Math.sin(-Math.PI / 6)) / vLength * 12 + endPoint.x),
+                (int) ((v.x * Math.sin(-Math.PI / 6) + v.y * Math.cos(-Math.PI / 6)) / vLength * 12 + endPoint.y)
         );
 
         g.drawLine(arrowStartPoint1.x, arrowStartPoint1.y, arrowEndPoint1.x, arrowEndPoint1.y);
