@@ -35,18 +35,18 @@ public class SelectModeMouseListener extends ModeMouseListener {
         UMLBasicObject object = canvas.getUmlObject(e.getPoint());
         if (object != null) {
             if (!object.isSelected()) {
-                for (UMLBasicObject umlBasicObject: canvas.getSelectedShapes()) {
+                for (UMLBasicObject umlBasicObject: canvas.getSelectedObjects()) {
                     umlBasicObject.setSelected(false);
                 }
-                canvas.getSelectedShapes().clear();
+                canvas.getSelectedObjects().clear();
                 object.setSelected(true);
                 canvas.addSelectedShape(object);
             }
         } else {
-            for (UMLBasicObject selectedShape: canvas.getSelectedShapes()) {
+            for (UMLBasicObject selectedShape: canvas.getSelectedObjects()) {
                 selectedShape.setSelected(false);
             }
-            canvas.getSelectedShapes().clear();
+            canvas.getSelectedObjects().clear();
         }
         previousMouseLocation = e.getPoint();
         canvas.repaint();
@@ -63,9 +63,9 @@ public class SelectModeMouseListener extends ModeMouseListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         Point currentLocation = e.getPoint();
-        if (!canvas.getSelectedShapes().isEmpty() && canvas.getSelectedArea() == null) {
+        if (!canvas.getSelectedObjects().isEmpty() && canvas.getSelectedArea() == null) {
             if (previousMouseLocation != null) {
-                for (UMLBasicObject selectedShape: canvas.getSelectedShapes()) {
+                for (UMLBasicObject selectedShape: canvas.getSelectedObjects()) {
                     selectedShape.move(
                             currentLocation.x - previousMouseLocation.x,
                             currentLocation.y - previousMouseLocation.y);
@@ -74,7 +74,7 @@ public class SelectModeMouseListener extends ModeMouseListener {
         } else {
             if (canvas.getSelectedArea() != null) {
                 updateSelectedArea(currentLocation);
-                for (UMLBasicObject object: canvas.getShapes()) {
+                for (UMLBasicObject object: canvas.getObjects()) {
                     if (canvas.getSelectedArea().contains(object.getBounds())) {
                         if (!object.isSelected()) {
                             object.setSelected(true);

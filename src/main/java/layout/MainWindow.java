@@ -14,6 +14,7 @@ public class MainWindow extends JFrame {
     private final JMenuBar menuBar;
     private ToolBar toolBar;
     private Canvas canvas;
+    private ChangeObjectNameWindow changeObjectNameWindow;
 
     public MainWindow(String title) {
         super(title);
@@ -28,20 +29,29 @@ public class MainWindow extends JFrame {
         menuBar.add(fileMenu);
         JMenu editMenu = new JMenu("Edit");
         JMenuItem changeObjectNameMenuItem = new JMenuItem("Change Object Name");
+        changeObjectNameMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (canvas.getSelectedObjects().size() == 1) {
+                    changeObjectNameWindow.setSelectedObject(canvas.getSelectedObjects().get(0));
+                    changeObjectNameWindow.setVisible(true);
+                }
+            }
+        });
         editMenu.add(changeObjectNameMenuItem);
         JMenuItem groupMenuItem = new JMenuItem("Group");
         groupMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UMLGroupObject groupObject = new UMLGroupObject(0, 0, 0, 0);
-                for (UMLBasicObject object: canvas.getSelectedShapes()) {
+                for (UMLBasicObject object: canvas.getSelectedObjects()) {
                     groupObject.addObject(object);
                     object.setGroup(groupObject);
-                    canvas.getShapes().remove(object);
+                    canvas.getObjects().remove(object);
                 }
-                canvas.getSelectedShapes().clear();
+                canvas.getSelectedObjects().clear();
                 canvas.addSelectedShape(groupObject);
-                canvas.addShape(groupObject);
+                canvas.addObject(groupObject);
                 canvas.repaint();
             }
         });
@@ -50,14 +60,14 @@ public class MainWindow extends JFrame {
         ungroupMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!canvas.getSelectedShapes().isEmpty() && canvas.isOnlyOneGroupSelected()) {
+                if (!canvas.getSelectedObjects().isEmpty() && canvas.isOnlyOneGroupSelected()) {
                     ArrayList<UMLBasicObject> tempGroup = new ArrayList<>(canvas.getSelectedGroup().getObjects());
                     canvas.getSelectedGroup().ungroup();
-                    canvas.removeShape(canvas.getSelectedGroup());
+                    canvas.removeObject(canvas.getSelectedGroup());
 
                     for (UMLBasicObject object: tempGroup) {
                         canvas.addSelectedShape(object);
-                        canvas.addShape((object));
+                        canvas.addObject((object));
                     }
                     canvas.repaint();
                 }
@@ -72,5 +82,7 @@ public class MainWindow extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(toolBar, BorderLayout.WEST);
         getContentPane().add(canvas, BorderLayout.CENTER);
+
+        changeObjectNameWindow = new ChangeObjectNameWindow(canvas);
     }
 }

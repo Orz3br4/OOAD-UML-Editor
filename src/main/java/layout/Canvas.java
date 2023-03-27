@@ -7,13 +7,12 @@ import modeController.ModeMouseListener;
 import component.UMLBasicObject;
 
 import javax.swing.*;
-import javax.xml.crypto.dsig.XMLSignature;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
-    private final ArrayList<UMLBasicObject> shapes = new ArrayList<>();
+    private final ArrayList<UMLBasicObject> objects = new ArrayList<>();
     private final ArrayList<UMLBasicLine> lines = new ArrayList<>();
     private final ArrayList<UMLBasicObject> selectedShapes = new ArrayList<>();
     private Rectangle selectedArea = null;
@@ -44,7 +43,7 @@ public class Canvas extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        for (UMLBasicObject shape: shapes) {
+        for (UMLBasicObject shape: objects) {
             shape.draw(g);
         }
 
@@ -65,15 +64,15 @@ public class Canvas extends JPanel {
         g.fillRect(selectedArea.x, selectedArea.y, selectedArea.width, selectedArea.height);
     }
 
-    public void addShape(UMLBasicObject umlBasicObject) {
-        for (UMLBasicObject obj: shapes) {
+    public void addObject(UMLBasicObject umlBasicObject) {
+        for (UMLBasicObject obj: objects) {
             obj.setDepth(obj.getDepth() + 1);
         }
-        shapes.add(umlBasicObject);
+        objects.add(umlBasicObject);
     }
 
-    public void removeShape(UMLBasicObject umlBasicObject) {
-        shapes.remove(umlBasicObject);
+    public void removeObject(UMLBasicObject umlBasicObject) {
+        objects.remove(umlBasicObject);
     }
 
     public void addLine(UMLBasicLine line) {
@@ -82,7 +81,7 @@ public class Canvas extends JPanel {
 
     public UMLPort getUmlObjectPort(Point point) {
         UMLPort closestPort = null;
-        for (UMLBasicObject object: shapes) {
+        for (UMLBasicObject object: objects) {
             if (object.contains(point)) {
                 closestPort = object.getClosestPort(point);
             }
@@ -94,7 +93,7 @@ public class Canvas extends JPanel {
         lines.remove(currentLine);
     }
 
-    public ArrayList<UMLBasicObject> getSelectedShapes() {
+    public ArrayList<UMLBasicObject> getSelectedObjects() {
         return selectedShapes;
     }
 
@@ -104,7 +103,7 @@ public class Canvas extends JPanel {
 
     public UMLBasicObject getUmlObject(Point point) {
         UMLBasicObject topMostObject = null;
-        for (UMLBasicObject object: shapes) {
+        for (UMLBasicObject object: objects) {
             if (object.contains(point)) {
                 if (topMostObject == null) {
                     topMostObject = object;
@@ -117,8 +116,8 @@ public class Canvas extends JPanel {
         return topMostObject;
     }
 
-    public ArrayList<UMLBasicObject> getShapes() {
-        return shapes;
+    public ArrayList<UMLBasicObject> getObjects() {
+        return objects;
     }
 
     public Rectangle getSelectedArea() {

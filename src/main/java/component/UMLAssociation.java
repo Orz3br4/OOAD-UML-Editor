@@ -12,6 +12,7 @@ public class UMLAssociation extends UMLBasicLine {
         g.setColor(Color.BLACK);
         g.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
 
+        
 //        g.
     }
 }

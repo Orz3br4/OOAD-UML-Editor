@@ -33,7 +33,7 @@ public class CreateObjectModeMouseListener extends ModeMouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         UMLBasicObject shape = factory.createUMLObject(objType, e.getPoint());
-        canvas.addShape(shape);
+        canvas.addObject(shape);
         canvas.repaint();
     }
 
