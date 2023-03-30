@@ -17,14 +17,20 @@ public class UMLGeneralization extends UMLBasicLine {
                 endPoint.x + v.x / vLength * 12,
                 endPoint.y + v.y / vLength * 12);
 
+        double rotatedX1 = (v.x * Math.cos(Math.PI / 6) - v.y * Math.sin(Math.PI / 6)) / vLength * 12;
+        double rotatedY1 = (v.x * Math.sin(Math.PI / 6) + v.y * Math.cos(Math.PI / 6)) / vLength * 12;
+
         Point arrowStartPoint1 = new Point(
-                (int) ((v.x * Math.cos(Math.PI / 6) - v.y * Math.sin(Math.PI / 6)) / vLength * 12 + endPoint.x),
-                (int) ((v.x * Math.sin(Math.PI / 6) + v.y * Math.cos(Math.PI / 6)) / vLength * 12 + endPoint.y)
+                (int) (rotatedX1 + endPoint.x),
+                (int) (rotatedY1 + endPoint.y)
         );
 
+        double rotatedX2 = (v.x * Math.cos(-Math.PI / 6) - v.y * Math.sin(-Math.PI / 6)) / vLength * 12;
+        double rotatedY2 = (v.x * Math.sin(-Math.PI / 6) + v.y * Math.cos(-Math.PI / 6)) / vLength * 12;
+
         Point arrowStartPoint2 = new Point(
-                (int) ((v.x * Math.cos(-Math.PI / 6) - v.y * Math.sin(-Math.PI / 6)) / vLength * 12 + endPoint.x),
-                (int) ((v.x * Math.sin(-Math.PI / 6) + v.y * Math.cos(-Math.PI / 6)) / vLength * 12 + endPoint.y)
+                (int) (rotatedX2 + endPoint.x),
+                (int) (rotatedY2 + endPoint.y)
         );
 
         g.setColor(Color.WHITE);

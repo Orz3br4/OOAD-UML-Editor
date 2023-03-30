@@ -5,7 +5,6 @@ import component.UMLBasicLine;
 import component.UMLPort;
 import layout.Canvas;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class CreateLineModeMouseListener extends ModeMouseListener {
@@ -37,8 +36,7 @@ public class CreateLineModeMouseListener extends ModeMouseListener {
     public void mousePressed(MouseEvent e) {
         UMLPort closestPort = canvas.getUmlObjectPort(e.getPoint());
         if (closestPort != null) {
-            UMLBasicLine line = factory.createUMLLine(lineType, closestPort.getLocation(), e.getPoint());
-            currentLine = line;
+            currentLine = factory.createUMLLine(lineType, closestPort.getLocation(), e.getPoint());
             currentLine.setStartPort(closestPort);
             closestPort.addLine(currentLine);
             canvas.addLine(currentLine);

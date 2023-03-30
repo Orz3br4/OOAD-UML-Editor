@@ -1,5 +1,7 @@
 package component;
 
+import layout.Canvas;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -56,10 +58,16 @@ public class UMLGroupObject extends UMLBasicObject {
         return smallestY;
     }
 
-    public void ungroup() {
+    public void ungroup(Canvas canvas) {
         for (UMLBasicObject object: objects) {
             object.setGroup(null);
             object.setSelected(true);
+        }
+        for (UMLPort port: ports) {
+            for (UMLBasicLine line: port.getLines()) {
+                canvas.removeLine(line);
+            }
+            port.getLines().clear();
         }
         setSelected(false);
     }

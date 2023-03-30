@@ -14,7 +14,7 @@ public class Canvas extends JPanel {
     private ModeMouseListener currentModeMouseListener = null;
     private final ArrayList<UMLBasicObject> objects = new ArrayList<>();
     private final ArrayList<UMLBasicLine> lines = new ArrayList<>();
-    private final ArrayList<UMLBasicObject> selectedShapes = new ArrayList<>();
+    private final ArrayList<UMLBasicObject> selectedObjects = new ArrayList<>();
     private Rectangle selectedArea = null;
     protected int startX, startY;
 
@@ -28,10 +28,10 @@ public class Canvas extends JPanel {
             removeMouseMotionListener(this.currentModeMouseListener);
         }
 
-        for (UMLBasicObject selectedShape: selectedShapes){
+        for (UMLBasicObject selectedShape: selectedObjects){
                 selectedShape.setSelected(false);
         }
-        selectedShapes.clear();
+        selectedObjects.clear();
 
         this.currentModeMouseListener = currentModeMouseListener;
         addMouseListener(this.currentModeMouseListener);
@@ -94,11 +94,15 @@ public class Canvas extends JPanel {
     }
 
     public ArrayList<UMLBasicObject> getSelectedObjects() {
-        return selectedShapes;
+        return selectedObjects;
     }
 
-    public void addSelectedShape(UMLBasicObject selectedShape) {
-        this.selectedShapes.add(selectedShape);
+    public void addSelectedObject(UMLBasicObject selectedShape) {
+        this.selectedObjects.add(selectedShape);
+    }
+
+    public void removeSelectedObject(UMLBasicObject selectedShape) {
+        this.selectedObjects.remove(selectedShape);
     }
 
     public UMLBasicObject getUmlObject(Point point) {
@@ -144,18 +148,14 @@ public class Canvas extends JPanel {
         this.startY = startY;
     }
 
-    public ModeMouseListener getCurrentModeMouseListener() {
-        return currentModeMouseListener;
-    }
-
     public boolean isOnlyOneGroupSelected() {
-        return (selectedShapes.size() == 1 &&
-            selectedShapes.get(0).getClass().getName().equals("component.UMLGroupObject"));
+        return (selectedObjects.size() == 1 &&
+            selectedObjects.get(0).getClass().getName().equals("component.UMLGroupObject"));
     }
 
     public UMLGroupObject getSelectedGroup() {
         if (isOnlyOneGroupSelected()) {
-            return (UMLGroupObject) selectedShapes.get(0);
+            return (UMLGroupObject) selectedObjects.get(0);
         } else return null;
     }
 }

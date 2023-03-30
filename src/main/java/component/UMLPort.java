@@ -57,4 +57,9 @@ public class UMLPort extends UMLShape {
     public void removeLine(UMLBasicLine currentLine) {
         lines.remove(currentLine);
     }
+
+    public ArrayList<UMLBasicLine> getLines() {
+        return lines;
+    }
+
 }

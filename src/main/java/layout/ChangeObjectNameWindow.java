@@ -44,7 +44,7 @@ public class ChangeObjectNameWindow extends JFrame {
 
         JButton confirmButton = new JButton("Confirm");
         confirmButton.addActionListener(e -> {
-            System.out.println(selectedObject.getObjName());
+            System.out.println(selectedObject);
             if (selectedObject != null) {
                 selectedObject.setObjName(newName);
                 selectedObject = null;

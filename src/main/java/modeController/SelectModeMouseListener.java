@@ -40,7 +40,7 @@ public class SelectModeMouseListener extends ModeMouseListener {
                 }
                 canvas.getSelectedObjects().clear();
                 object.setSelected(true);
-                canvas.addSelectedShape(object);
+                canvas.addSelectedObject(object);
             }
         } else {
             for (UMLBasicObject selectedShape: canvas.getSelectedObjects()) {
@@ -65,23 +65,12 @@ public class SelectModeMouseListener extends ModeMouseListener {
         Point currentLocation = e.getPoint();
         if (!canvas.getSelectedObjects().isEmpty() && canvas.getSelectedArea() == null) {
             if (previousMouseLocation != null) {
-                for (UMLBasicObject selectedShape: canvas.getSelectedObjects()) {
-                    selectedShape.move(
-                            currentLocation.x - previousMouseLocation.x,
-                            currentLocation.y - previousMouseLocation.y);
-                }
+                moveSelectedObjects(currentLocation);
             }
         } else {
             if (canvas.getSelectedArea() != null) {
                 updateSelectedArea(currentLocation);
-                for (UMLBasicObject object: canvas.getObjects()) {
-                    if (canvas.getSelectedArea().contains(object.getBounds())) {
-                        if (!object.isSelected()) {
-                            object.setSelected(true);
-                            canvas.addSelectedShape(object);
-                        }
-                    }
-                }
+                updateSelectedObjects();
             } else {
                 canvas.setSelectedArea(new Rectangle(currentLocation));
                 canvas.setStartX(currentLocation.x);
@@ -90,6 +79,30 @@ public class SelectModeMouseListener extends ModeMouseListener {
         }
         previousMouseLocation = currentLocation;
         canvas.repaint();
+    }
+
+    private void moveSelectedObjects(Point currentLocation) {
+        for (UMLBasicObject selectedShape: canvas.getSelectedObjects()) {
+            selectedShape.move(
+                    currentLocation.x - previousMouseLocation.x,
+                    currentLocation.y - previousMouseLocation.y);
+        }
+    }
+
+    private void updateSelectedObjects() {
+        for (UMLBasicObject object: canvas.getObjects()) {
+            if (canvas.getSelectedArea().contains(object.getBounds())) {
+                if (!object.isSelected()) {
+                    object.setSelected(true);
+                    canvas.addSelectedObject(object);
+                }
+            } else {
+                if (object.isSelected()) {
+                    object.setSelected(false);
+                    canvas.removeSelectedObject(object);
+                }
+            }
+        }
     }
 
     private void updateSelectedArea(Point currentLocation) {

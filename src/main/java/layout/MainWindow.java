@@ -50,7 +50,7 @@ public class MainWindow extends JFrame {
                     canvas.getObjects().remove(object);
                 }
                 canvas.getSelectedObjects().clear();
-                canvas.addSelectedShape(groupObject);
+                canvas.addSelectedObject(groupObject);
                 canvas.addObject(groupObject);
                 canvas.repaint();
             }
@@ -62,11 +62,11 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!canvas.getSelectedObjects().isEmpty() && canvas.isOnlyOneGroupSelected()) {
                     ArrayList<UMLBasicObject> tempGroup = new ArrayList<>(canvas.getSelectedGroup().getObjects());
-                    canvas.getSelectedGroup().ungroup();
+                    canvas.getSelectedGroup().ungroup(canvas);
                     canvas.removeObject(canvas.getSelectedGroup());
 
                     for (UMLBasicObject object: tempGroup) {
-                        canvas.addSelectedShape(object);
+                        canvas.addSelectedObject(object);
                         canvas.addObject((object));
                     }
                     canvas.repaint();
