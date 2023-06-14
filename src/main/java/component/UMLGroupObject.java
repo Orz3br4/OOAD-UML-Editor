@@ -58,10 +58,14 @@ public class UMLGroupObject extends UMLBasicObject {
         return smallestY;
     }
 
-    public void ungroup(Canvas canvas) {
+    @Override
+    public void ungroup() {
+        Canvas canvas = Canvas.getInstance();
         for (UMLBasicObject object: objects) {
             object.setGroup(null);
             object.setSelected(true);
+            canvas.addSelectedObject(object);
+            canvas.addObject((object));
         }
         for (UMLPort port: ports) {
             for (UMLBasicLine line: port.getLines()) {
@@ -70,6 +74,7 @@ public class UMLGroupObject extends UMLBasicObject {
             port.getLines().clear();
         }
         setSelected(false);
+        canvas.removeObject(this);
     }
 
     @Override

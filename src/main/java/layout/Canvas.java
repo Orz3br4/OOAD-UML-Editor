@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
+    private  static Canvas instance = null;
     private ModeMouseListener currentModeMouseListener = null;
     private final ArrayList<UMLBasicObject> objects = new ArrayList<>();
     private final ArrayList<UMLBasicLine> lines = new ArrayList<>();
@@ -18,8 +19,15 @@ public class Canvas extends JPanel {
     private Rectangle selectedArea = null;
     protected int startX, startY;
 
-    public Canvas() {
+    private Canvas() {
         setBackground(Color.WHITE);
+    }
+
+    public  static Canvas getInstance() {
+        if (Canvas.instance == null) {
+            Canvas.instance = new Canvas();
+        }
+        return Canvas.instance;
     }
 
     public void setCurrentModeController(ModeMouseListener currentModeMouseListener) {
@@ -148,14 +156,4 @@ public class Canvas extends JPanel {
         this.startY = startY;
     }
 
-    public boolean isOnlyOneGroupSelected() {
-        return (selectedObjects.size() == 1 &&
-            selectedObjects.get(0).getClass().getName().equals("component.UMLGroupObject"));
-    }
-
-    public UMLGroupObject getSelectedGroup() {
-        if (isOnlyOneGroupSelected()) {
-            return (UMLGroupObject) selectedObjects.get(0);
-        } else return null;
-    }
 }

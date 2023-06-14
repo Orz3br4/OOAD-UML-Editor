@@ -11,10 +11,9 @@ public class ChangeObjectNameWindow extends JFrame {
     private static final Dimension changeObjectNameWindowSize = new Dimension(400, 100);
     private String newName;
     private UMLBasicObject selectedObject = null;
-    private final Canvas canvas;
+    private final Canvas canvas = Canvas.getInstance();
 
-    ChangeObjectNameWindow(Canvas canvas) {
-        this.canvas = canvas;
+    ChangeObjectNameWindow() {
 
         setTitle("Change Object Name");
         setPreferredSize(changeObjectNameWindowSize);

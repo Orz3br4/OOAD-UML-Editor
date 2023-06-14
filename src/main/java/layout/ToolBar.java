@@ -22,12 +22,10 @@ public class ToolBar extends JToolBar {
     private ToolButton createUseCaseButton;
     private ToolButton selectedButton = null;
     private ModeMouseListener currentModeMouseListener;
-    private Canvas canvas;
+    private Canvas canvas = Canvas.getInstance();
 
-    public ToolBar(Canvas controlledCanvas) {
+    public ToolBar() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
-        canvas = controlledCanvas;
 
         ImageIcon selectIcon = new ImageIcon("src/main/resources/icons/select.png");
         selectModeButton            = new ToolButton("Select", selectIcon, new SelectModeMouseListener(canvas));

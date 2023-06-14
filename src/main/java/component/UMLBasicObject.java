@@ -95,4 +95,6 @@ public abstract class UMLBasicObject extends UMLShape {
     public void setGroup(UMLGroupObject group) {
         this.group = group;
     }
+
+    public void ungroup() {}
 }
