@@ -75,6 +75,7 @@ public class UMLGroupObject extends UMLBasicObject {
         }
         setSelected(false);
         canvas.removeObject(this);
+        canvas.removeSelectedObject(this);
     }
 
     @Override

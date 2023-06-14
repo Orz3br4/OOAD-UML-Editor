@@ -88,10 +88,6 @@ public abstract class UMLBasicObject extends UMLShape {
         return closestPort;
     }
 
-    public UMLGroupObject getGroup() {
-        return group;
-    }
-
     public void setGroup(UMLGroupObject group) {
         this.group = group;
     }
