@@ -2,6 +2,9 @@ package layout;
 
 import component.UMLBasicObject;
 import component.UMLGroupObject;
+import layout.MenuItem.ChangeObjectNameMenuItem;
+import layout.MenuItem.GroupMenuItem;
+import layout.MenuItem.UngroupMenuItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,54 +28,31 @@ public class MainWindow extends JFrame {
 
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        JMenu fileMenu = new JMenu("File");
-        menuBar.add(fileMenu);
+
+        // Initialize Edit Menu
         JMenu editMenu = new JMenu("Edit");
-        JMenuItem changeObjectNameMenuItem = new JMenuItem("Change Object Name");
-        changeObjectNameMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (canvas.getSelectedObjects().size() == 1) {
-                    changeObjectNameWindow.setSelectedObject(canvas.getSelectedObjects().get(0));
-                    changeObjectNameWindow.setVisible(true);
-                }
-            }
-        });
+
+        // Add "change object name" menu item
+        ChangeObjectNameMenuItem changeObjectNameMenuItem = new ChangeObjectNameMenuItem(changeObjectNameWindow);
         editMenu.add(changeObjectNameMenuItem);
-        JMenuItem groupMenuItem = new JMenuItem("Group");
-        groupMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UMLGroupObject groupObject = new UMLGroupObject(0, 0, 0, 0);
-                for (UMLBasicObject object: canvas.getSelectedObjects()) {
-                    groupObject.addObject(object);
-                    object.setGroup(groupObject);
-                    canvas.getObjects().remove(object);
-                }
-                canvas.getSelectedObjects().clear();
-                canvas.addSelectedObject(groupObject);
-                canvas.addObject(groupObject);
-                canvas.repaint();
-            }
-        });
+
+        // Add "Group" menu item
+        GroupMenuItem groupMenuItem = new GroupMenuItem();
         editMenu.add(groupMenuItem);
-        JMenuItem ungroupMenuItem = new JMenuItem("Ungroup");
-        ungroupMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ArrayList<UMLBasicObject> tempList = new ArrayList<>(canvas.getSelectedObjects());
-                for (UMLBasicObject object: tempList) {
-                    object.ungroup();
-                }
-                canvas.repaint();
-            }
-        });
+
+        // Add "Ungroup" menu item
+        UngroupMenuItem ungroupMenuItem = new UngroupMenuItem();
         editMenu.add(ungroupMenuItem);
+
         menuBar.add(editMenu);
 
+        // Initialize Canvas
         canvas = Canvas.getInstance();
+
+        // Initialize ToolBar
         toolBar = new ToolBar();
 
+        // Initialize UI layout
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(toolBar, BorderLayout.WEST);
         getContentPane().add(canvas, BorderLayout.CENTER);
