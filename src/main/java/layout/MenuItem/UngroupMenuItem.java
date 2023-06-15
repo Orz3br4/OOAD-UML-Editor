@@ -1,4 +1,4 @@
-package layout.MenuItem;
+package layout.menuItem;
 
 import component.UMLBasicObject;
 import layout.Canvas;
@@ -16,9 +16,8 @@ public class UngroupMenuItem extends JMenuItem {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<UMLBasicObject> tempList = new ArrayList<>(canvas.getSelectedObjects());
-                for (UMLBasicObject object: tempList) {
-                    object.ungroup();
+                if (canvas.getSelectedObjects().size() == 1) {
+                    canvas.getSelectedObjects().get(0).ungroup();
                 }
                 canvas.repaint();
             }
